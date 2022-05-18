@@ -1,9 +1,10 @@
-import './App.css';
+import "./App.css";
+import Homepage from "./homepage.component";
 
 function App() {
   return (
     <div className="App">
-      Ello
+      <Homepage />
     </div>
   );
 }
