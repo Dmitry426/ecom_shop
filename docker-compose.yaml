@@ -5,8 +5,8 @@ services:
       context: ./react_front
       dockerfile: ../Dockerfiles/React/Dockerfile
     volumes:
-      - './react_front:/app'
-      - '/app/node_modules'
+      - "./react_front:/app"
+      - "/app/node_modules"
     ports:
       - 3000:3000
     stdin_open: true
