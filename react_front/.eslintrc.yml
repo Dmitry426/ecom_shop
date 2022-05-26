@@ -1,0 +1,13 @@
+env:
+  browser: true
+extends:
+  [eslint:recommended, plugin:react/recommended, plugin:react/jsx-runtime]
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: latest
+  es2021: true
+  sourceType: module
+plugins:
+  - react
+rules: {}
