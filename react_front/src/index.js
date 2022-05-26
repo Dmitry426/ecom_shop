@@ -1,14 +1,16 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
+ReactDOM.render(
+  <BrowserRouter>
     <App />
-  </React.StrictMode>
+  </BrowserRouter>,
+  document.getElementById("root")
 );
 
 reportWebVitals();
