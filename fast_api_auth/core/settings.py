@@ -13,6 +13,7 @@ class SQLAlchemySettings(BaseSettings):
     username: str = "postgres"
     password: SecretStr = "pgpassword"
     database_name: str = "auth_db"
+    max_backoff: int  = 30
 
 
 class RedisSettings(BaseSettings):
