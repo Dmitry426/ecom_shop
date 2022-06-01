@@ -1,6 +1,6 @@
 services:
   shop_front:
-    container_name: movies_admin_front
+    container_name: shop_front
     build:
       context: ./react_front
       dockerfile: ../Dockerfiles/React/Dockerfile
@@ -13,3 +13,38 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     command: npm start
+
+  fast_auth:
+    build:
+      context: ./fast_api_auth
+      dockerfile: ./Dockerfiles/Fast_api_auth/Dockerfile
+      target: development
+    image: ugc_service
+    environment:
+      - PORT_APP=4000
+    ports:
+      - "127.0.0.1:4000:4000"
+    env_file:
+      - ./.env
+    volumes:
+      - "./fast_api_auth:/src/fast_api_auth"
+    depends_on:
+      - zookeeper
+
+  postgres:
+    image: postgres:13.0-alpine
+    volumes:
+      - shop_postgres:/var/lib/postgresql/data/
+      - ./Configs/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - 5432:5432
+
+volumes:
+  shop_postgres:
+    driver: 'local'
