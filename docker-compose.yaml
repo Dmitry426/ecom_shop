@@ -4,6 +4,7 @@ services:
     build:
       context: ./react_front
       dockerfile: ../Dockerfiles/React/Dockerfile
+    command: npm start
     volumes:
       - "./react_front:/app"
       - "/app/node_modules"
@@ -12,14 +13,14 @@ services:
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
-    command: npm start
 
   fast_auth:
     build:
-      context: ./fast_api_auth
+      context: .
       dockerfile: ./Dockerfiles/Fast_api_auth/Dockerfile
       target: development
     image: ugc_service
+    command: ["python", "-m", "authorization"]
     environment:
       - PORT_APP=4000
     ports:
@@ -27,9 +28,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - "./fast_api_auth:/src/fast_api_auth"
-    depends_on:
-      - zookeeper
+      - "./fast_api/authorization:/src/authorization"
 
   postgres:
     image: postgres:13.0-alpine
@@ -39,12 +38,24 @@ services:
     env_file:
       - ./.env
     environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${SQLALCHEMY_USERNAME}
+      - POSTGRES_PASSWORD=${SQLALCHEMY_PASSWORD}
+      - POSTGRES_DB=${SQLALCHEMY_DATABASE_NAME}
     ports:
       - 5432:5432
 
+  redis_server:
+    image: 'redis:alpine'
+    volumes:
+      - data_redis:/data
+    env_file:
+      - ./.env
+    ports:
+      - "6379:6379"
+    restart: always
+
 volumes:
   shop_postgres:
+    driver: 'local'
+  data_redis:
     driver: 'local'
