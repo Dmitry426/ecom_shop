@@ -1,9 +1,12 @@
+import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
+
 const SingIn = () => {
-    return (
+  return (
     <div>
-        <h1> Sing in page </h1>
+      <h1>Render</h1>
+      <SignUpForm />
     </div>
-    )
+  );
 };
 
-export  default  SingIn ;
+export default SingIn;
