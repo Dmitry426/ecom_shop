@@ -131,12 +131,12 @@ dmypy.json
 
 .vscode
 /react_front/node_modules/
-/fast_api_auth/.idea/.gitignore
-/fast_api_auth/.idea/fast_api_auth.iml
-/fast_api_auth/.idea/misc.xml
-/fast_api_auth/.idea/modules.xml
-/fast_api_auth/poetry.lock
-/fast_api_auth/.idea/inspectionProfiles/profiles_settings.xml
-/fast_api_auth/.idea/inspectionProfiles/Project_Default.xml
-/fast_api_auth/pyproject.toml
-/fast_api_auth/.idea/vcs.xml
+/fast_api/.idea/.gitignore
+/fast_api/.idea/fast_api_auth.iml
+/fast_api/.idea/misc.xml
+/fast_api/.idea/modules.xml
+/fast_api/poetry.lock
+/fast_api/.idea/inspectionProfiles/profiles_settings.xml
+/fast_api/.idea/inspectionProfiles/Project_Default.xml
+/fast_api/pyproject.toml
+/fast_api/.idea/vcs.xml
