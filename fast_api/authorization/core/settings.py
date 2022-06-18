@@ -7,13 +7,13 @@ class SQLAlchemySettings(BaseSettings):
     class Config:
         env_prefix = "SQLALCHEMY_"
 
-    connector: str = "postgresql"
+    connector: str = "postgresql+asyncpg"
     host: str = "postgres"
     port: int = 5432
     username: str = "postgres"
     password: SecretStr = "pgpassword"
     database_name: str = "auth_db"
-    max_backoff: int  = 30
+    max_backoff: int= 30
 
 
 class RedisSettings(BaseSettings):

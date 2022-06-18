@@ -59,7 +59,7 @@ COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 
 RUN poetry install
 
-# WARNING! Don't forget to mount "./app:/src/app"
+# WARNING! Don't forget to mount "./app:/authorization/app"
 WORKDIR /src
 
 EXPOSE $PORT_APP
