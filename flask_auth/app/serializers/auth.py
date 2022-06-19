@@ -8,11 +8,13 @@ from pydantic import BaseModel, validator
 class UserBody(BaseModel):
     id: UUID
     login: str
+    email: str
 
 
 class LoginBody(BaseModel):
     login: str
     password: str
+    email: str
 
 
 class RegisterBody(LoginBody):
