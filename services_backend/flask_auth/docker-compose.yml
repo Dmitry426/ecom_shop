@@ -4,9 +4,11 @@ services:
     build:
       context: .
       target: development
-    image: auth_server
+      dockerfile: ../../Dockerfiles/Flask_auth/Dockerfile
+    image: ecom_authorization
+    command: ["python", "-m","app"]
     environment:
-      - PORT_APP=3000
+      - PORT_APP=4000
       - SQLALCHEMY_USERNAME:pguser
       - SQLALCHEMY_PASSWORD:pgpassword
       - SQLALCHEMY_DATABASE_NAME:auth_db
@@ -14,12 +16,12 @@ services:
       - TRACING_ENABLED=true
       - TRACING_AGENT_HOST_NAME=jaeger
     ports:
-      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:4000:4000"
     env_file:
       - ./.env
     volumes:
-      - "./app:/src/app"
-      - "./migrations:/src/migrations"
+      - ./src/app:/home/app/src/app
+      - ./src/migrations:/home/app/src/migrations
     depends_on:
       - redis
       - postgres

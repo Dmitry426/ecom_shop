@@ -4,13 +4,14 @@ services:
     build:
       context: .
       target: production
+      dockerfile: ../../Dockerfiles/Flask_auth/Dockerfile
     environment:
       - PORT_APP=3000
       - WORKERS=2
       - ASYNC_CORES=2000
       - PROTOCOL=http
     env_file:
-      - .env
+      - ./.env
     ports:
       - "127.0.0.1:3000:3000"
     depends_on:
@@ -33,14 +34,14 @@ services:
       POSTGRES_PASSWORD: pgpassword
       POSTGRES_DB: auth_db
 
-  nginx:
-    image: nginx
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-    depends_on:
-      - app
+#  nginx:
+#    image: nginx
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - ./nginx:/etc/nginx/conf.d
+#    depends_on:
+#      - app
 
 volumes:
   redis-data:
