@@ -15,7 +15,6 @@ from flask_jwt_extended import (
 )
 
 from app.core.config import JWTSettings
-from app.core.enums import DefaultRole
 from app.core.redis import redis
 from app.core.tracing import tracer
 from app.models.db_models import User

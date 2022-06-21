@@ -33,8 +33,8 @@ auth = Blueprint("auth", __name__, url_prefix="/auth")
 @validate()
 def registration(body: RegisterBody):
     """
-    Create new user and hash password if email and password valid
-    Check if email  already exist in DataBase
+    Create new user and hash password if login and password valid
+    Check if login already exist in DataBase
     Check regex for password
     """
 
@@ -57,11 +57,11 @@ def registration(body: RegisterBody):
 def change_password(body: RegisterBody):
     user_uuid = get_current_user().id
     user = User.query.filter_by(id=user_uuid).one_or_none()
-    new_login_exist = db.session.query(
-        db.exists().where(User.login == body.login)
+    new_email_exist = db.session.query(
+        db.exists().where(User.email == body.email)
     ).scalar()
 
-    if new_login_exist:
+    if new_email_exist:
         msg = "User with this login already exist, please change login"
         return ErrorBody(error=msg), HTTPStatus.CONFLICT
 
@@ -69,16 +69,16 @@ def change_password(body: RegisterBody):
         msg = "This password matches with the current one, Please enter new one "
         return ErrorBody(error=msg), HTTPStatus.CONFLICT
 
-    user.login = body.login
+    user.email = body.email
     user.set_password(body.password)
     db.session.commit()
-    return UserBody(id=user.id, login=user.login, email=body.email), HTTPStatus.ACCEPTED
+    return UserBody(id=user.id, login=user.login, email=user.email), HTTPStatus.ACCEPTED
 
 
 @auth.route("/login", methods=["POST"])
 @validate()
 def login(body: LoginBody):
-    user = User.query.filter_by(login=body.email).one_or_none()
+    user = User.query.filter_by(email=body.email).one_or_none()
     if not user or not user.check_password(body.password):
         msg = "User with this credentials does not exist"
         return ErrorBody(error=msg), HTTPStatus.CONFLICT

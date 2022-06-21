@@ -12,12 +12,13 @@ class UserBody(BaseModel):
 
 
 class LoginBody(BaseModel):
-    login: str
-    password: str
     email: str
+    password: str
 
 
 class RegisterBody(LoginBody):
+    login: str
+
     @validator("password")
     def password_validate(cls, value):
         if not re.match(

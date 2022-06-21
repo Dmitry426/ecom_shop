@@ -28,7 +28,7 @@ class SQLAlchemySettings(BaseSettings):
 class RedisSettings(BaseSettings):
     """Represents Redis settings."""
 
-    host: str = Field("redis", env="REDIS_HOST")
+    host: str = Field("localhost", env="REDIS_HOST")
     port: int = Field(6379, env="REDIS_PORT")
     db: int = Field(0, env="REDIS_DB")
 
@@ -37,7 +37,7 @@ class FlaskSettings(BaseSettings):
     """Represents Flask settings."""
 
     host: str = Field("0.0.0.0", env="FLASK_HOST")
-    port: int = Field(3000, env="PORT_APP")
+    port: int = Field(4000, env="PORT_APP")
     debug: bool = Field(True, env="FLASK_DEBUG")
     redirect_uri: str = Field("localhost", env="REDIRECT_URI")
 
