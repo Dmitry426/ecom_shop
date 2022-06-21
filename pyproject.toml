@@ -1,23 +1,69 @@
 [tool.poetry]
-name = "ecom_react"
-version = "0.1.0"
-description = ""
-authors = ["Dmitrii <kachkindmitry@gmail.com>"]
-
-[tool.poetry.dependencies]
-python = "^3.8"
-fastapi = "^0.78.0"
-backoff = "^2.1.2"
-pydantic = "^1.9.1"
-aioredis = "^2.0.1"
-asyncpg = "^0.25.0"
-SQLAlchemy = {extras = ["asyncio"], version = "^1.4.37"}
-passlib = "^1.7.4"
-uvicorn = "^0.17.6"
+name = "AUTH APP"
+description = "Ecom web"
+version = "2022.3.1"
+authors = []
 
 
-[tool.poetry.dev-dependencies]
+[tool.black]
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.tox
+  | venv
+  | build
+  | dist
+)/
+'''
+
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+
+[tool.mypy]
+warn_redundant_casts = true
+warn_unused_ignores = false
+warn_no_return = true
+warn_unreachable = true
+pretty = true
+
+[[tool.mypy.overrides]]
+module = "*.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
+
+
+[tool.pylint.messages_control]
+max-line-length = 88
+disable = [
+    "missing-docstring",
+    "too-few-public-methods",
+    "too-many-arguments",
+]
+
+ignored-modules = ["pydantic", "flask_sqlalchemy"]
+good-names = []
+
+[tool.pylint.similarities]
+ignore-imports = true
+ignore-docstrings = true
+ignore-comments = true
+
+
+[tool.pytest.ini_options]
+asyncio_mode= "strict"
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(levelname)-5.5s [%(name)s] %(message)s"
+
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
