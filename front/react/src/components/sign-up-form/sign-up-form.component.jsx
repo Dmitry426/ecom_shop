@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {createAuthUserWithEmailAndPassword} from "../../pages/utils/auth.utils";
 
 const defaultFormFields = {
-    name: "",
+    login: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -10,7 +10,7 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
-    const {name, email, password, confirmPassword} = formFields;
+    const {login, email, password, confirmPassword} = formFields;
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -26,7 +26,7 @@ const SignUpForm = () => {
             return
         }
         try {
-          await  createAuthUserWithEmailAndPassword(name, email, password)
+          await  createAuthUserWithEmailAndPassword(login, email, password)
         } finally {
             resetFormFields()
         }
@@ -40,8 +40,8 @@ const SignUpForm = () => {
                     type="text"
                     required
                     onChange={handleChange}
-                    name="name"
-                    value={name}
+                    name="login"
+                    value={login}
                 />
                 <label>Email</label>
                 <input
