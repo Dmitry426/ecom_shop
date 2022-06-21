@@ -103,7 +103,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+flask_auth/.env
 .venv
 env/
 venv/
@@ -140,3 +140,5 @@ dmypy.json
 /fast_api/.idea/inspectionProfiles/Project_Default.xml
 /fast_api/pyproject.toml
 /fast_api/.idea/vcs.xml
+/services_backend/flask_auth/.env
+/services_backend/flask_auth/.env
