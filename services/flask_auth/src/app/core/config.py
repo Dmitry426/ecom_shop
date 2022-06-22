@@ -17,12 +17,15 @@ from pydantic import BaseSettings, Field, SecretStr
 class SQLAlchemySettings(BaseSettings):
     """Represents SQLAlchemy settings."""
 
-    connector: str = Field("postgresql", env="SQLALCHEMY_SCHEMA")
-    host: str = Field("postgres", env="SQLALCHEMY_HOST")
-    port: Optional[int] = Field(5432, env="SQLALCHEMY_PORT")
-    username: Optional[str] = Field(None, env="SQLALCHEMY_USERNAME")
-    password: Optional[SecretStr] = Field(None, env="SQLALCHEMY_PASSWORD")
-    database_name: Optional[str] = Field(None, env="SQLALCHEMY_DATABASE_NAME")
+    class Config:
+        env_prefix = "SQLALCHEMY_"
+
+    connector: str = "postgresql"
+    host: str = "localhost"
+    port: int = 5432
+    username: str = "pguser"
+    password: SecretStr = "pgpassword"
+    database_name: str = "auth_db"
 
 
 class RedisSettings(BaseSettings):
