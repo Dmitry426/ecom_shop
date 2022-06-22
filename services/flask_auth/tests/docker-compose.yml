@@ -18,39 +18,42 @@ services:
       timeout: 30s
       retries: 10
     environment:
-      - PORT_APP=3000
-      - SQLALCHEMY_HOST=postgres
-      - REDIS_HOST=redis
-    env_file:
-      - ../.env
+      SQLALCHEMY_CONNECTOR: postgresql
+      SQlALCHEMY_HOST: postgres
+      SQLALCHEMY_USERNAME: pguser
+      SQLALCHEMY_PASSWORD: pgpassword
+      SQLALCHEMY_PORT: 5432
+      SQLALCHEMY_DATABASE_NAME: auth_db
+      JWT_SECRET_KEY: super-secret-key
+      TRACING_AGENT_HOST_NAME: jaeger
+      PORT_APP: 3000
+      REDIS_HOST: redis
     volumes:
-      -  ../src/app:/home/app/src/app
-      -  ../src/migrations:/home/app/src/migrations
+      - ../src/app:/home/app/src/app
+      - ../src/migrations:/home/app/src/migrations
     depends_on:
       postgres:
         condition: service_healthy
       redis:
-          condition: service_healthy
+        condition: service_healthy
 
 
   tests:
-      build:
-        context: ..
-        target: development
-        dockerfile: ../../Dockerfiles/Flask_auth/Dockerfile
-      command: [ "pytest", "-v" ]
-      env_file:
-        - ../.env
-      environment:
-        - SQLALCHEMY_HOST=postgres
-        - REDIS_HOST=redis
-        - TEST_URL=http://app:3000
-      volumes:
-        - ./functional:/home/app/src/tests
-        - ../src/app:/home/app/src/app
-      depends_on:
-        app:
-          condition: service_healthy
+    build:
+      context: ..
+      target: development
+      dockerfile: ../../Dockerfiles/Flask_auth/Dockerfile
+    command: [ "pytest", "-v" ]
+    environment:
+      REDIS_HOST: redis
+      SQlALCHEMY_HOST: postgres
+      TEST_URL: http://app:3000
+    volumes:
+      - ./functional:/home/app/src/tests
+      - ../src/app:/home/app/src/app
+    depends_on:
+      app:
+        condition: service_healthy
 
 
   redis:
