@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:4000/api/v1/auth/";
+const API_URL = "http://localhost:5010/api/v1/auth/";
 
 
 export const createAuthUserWithEmailAndPassword = async (login, email, password) => {
@@ -8,7 +8,6 @@ export const createAuthUserWithEmailAndPassword = async (login, email, password)
     try {
         await axios.post(API_URL + "registration", JSON.stringify({login,email,password}),{
             headers:{'Content-Type':'application/json'},
-            withCredentials:true
         });
     } catch (err) {
         if ( err.response?.status  === 401){
@@ -26,7 +25,6 @@ export const loginAuthUserWithNameAndPassword = async (login, password) => {
     try {
        let response =  await axios.post(API_URL + "login", JSON.stringify({login,password}),{
             headers:{'Content-Type':'application/json'},
-            withCredentials:true
         });
         return response?.data?.accessToken
     } catch (err) {
