@@ -1,0 +1,94 @@
+filebeat.inputs:
+  - type: log
+    paths:
+      - /var/harvested_logs/nginx/access-log-auth_api.json
+    fields:
+      log_type: "access-log-auth_api-log"
+    fields_under_root: true
+    json.keys_under_root: true
+    json.overwrite_keys: true
+    json.add_error_key: true
+    json.expand_keys: true
+
+  - type: log
+    paths:
+      - /var/harvested_logs/auth/auth_api.json
+    fields:
+      log_type: "auth_api-log"
+    fields_under_root: true
+    json.keys_under_root: true
+    json.overwrite_keys: true
+    json.add_error_key: true
+    json.expand_keys: true
+
+
+  - type: log
+    paths:
+      - /var/harvested_logs/nginx/film_api.json
+    fields:
+      log_type: "film_api-log"
+    fields_under_root: true
+    json.keys_under_root: true
+    json.overwrite_keys: true
+    json.add_error_key: true
+    json.expand_keys: true
+
+
+processors:
+  - drop_fields:
+      fields: [ "agent", "ecs", "input", "host" ]
+      ignore_missing: true
+
+  - copy_fields:
+      fields:
+        - from: log.level
+          to: level
+      fail_on_error: false
+      ignore_missing: true
+
+  - copy_fields:
+      fields:
+        - from: log.logger
+          to: service_name
+      fail_on_error: false
+      ignore_missing: true
+
+  - drop_fields:
+      when.contains.log_type: access-log-auth_api-log
+      fields: [ "log", "process" ]
+      ignore_missing: true
+
+  - drop_fields:
+      when.contains.log_type: film_api-log
+      fields: [ "log", "process" ]
+      ignore_missing: true
+
+  - drop_fields:
+      when.contains.log_type: auth_api-log
+      fields: [ "log", "process" ]
+      ignore_missing: true
+
+
+
+# Настройка Kibana
+setup.kibana.host: "${KIBANA_HOST}"
+setup.kibana.protocol: http
+
+# Настройка Elasticsearch
+output.elasticsearch:
+  hosts: "${ELASTICSEARCH_HOSTS}"
+  index: "filebeat-%{[log_type]}-%{+yyyy.MM.dd}"
+
+## Для отладки вместо "output.elasticsearch"
+#output.console:
+#  pretty: true
+
+# Отключение "Index Lifecycle Management"
+setup.ilm.enabled: false
+
+setup.template.name: "filebeat-"
+setup.template.pattern: "filebeat-*"
+
+setup.dashboards.enabled: true
+setup.dashboards.retry.enabled: true
+setup.dashboards.index: "filebeat-*"
