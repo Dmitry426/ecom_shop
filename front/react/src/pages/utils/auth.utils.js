@@ -20,6 +20,7 @@ export const createAuthUserWithEmailAndPassword = async (login, email, password)
 };
 
 
+
 export const loginAuthUserWithNameAndPassword = async (login, password) => {
     if (!name || !password) return;
     try {

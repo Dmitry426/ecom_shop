@@ -46,7 +46,7 @@ jobs:
       run: npm install
 
     - name: Run Prettier
-      run: npm prettier
+      run: npm run prettier
 
     - name: Run Eslint
-      run: npm eslint || true
+      run: npm run  eslint || true
