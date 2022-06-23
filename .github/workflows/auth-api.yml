@@ -60,5 +60,4 @@ jobs:
       - name: Run Test
         if always()
         run:
-          cp env.
           make test
