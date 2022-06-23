@@ -35,9 +35,9 @@ lint_python: isort black mypy flake8 pylint
 
 .PHONY: test_auth
 test_auth:
-	docker-compose -f services_backend/flask_auth/tests/docker-compose.yml down
-	docker-compose -f services_backend/flask_auth/tests/docker-compose.yml build
-	docker-compose -f services_backend/flask_auth/tests/docker-compose.yml up
+	docker-compose -f services/flask_auth/tests/docker-compose.yml down
+	docker-compose -f services/flask_auth/tests/docker-compose.yml build
+	docker-compose -f services/flask_auth/tests/docker-compose.yml up
 
 .PHONY: test-cleanup
 test_auth-cleanup:
