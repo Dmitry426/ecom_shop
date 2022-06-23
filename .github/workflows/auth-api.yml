@@ -58,6 +58,5 @@ jobs:
         run: mypy --install-types --non-interactive --ignore-missing-imports . || true
 
       - name: Run Test
-        if always()
         run:
           make test
