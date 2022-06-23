@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 env:
-  SRC_PATH: services/flask_auth/src
+  SRC_PATH: services/flask_auth
   DEPLOY_PATH: services/flask_auth
 
 jobs:
