@@ -5,17 +5,17 @@ on:
     branches:
       - main
     paths:
-      - services/flask_auth/**
+      - Services/flask_auth/**
   pull_request:
     branches:
       - main
     paths:
-      - services/flask_auth/**
+      - Services/flask_auth/**
   workflow_dispatch:
 
 env:
-  SRC_PATH: services/flask_auth
-  DEPLOY_PATH: services/flask_auth
+  SRC_PATH: Services/flask_auth
+  DEPLOY_PATH: Services/flask_auth
 
 jobs:
   style-checking:
@@ -56,7 +56,3 @@ jobs:
 
       - name: REPORT - Type checking
         run: mypy --install-types --non-interactive --ignore-missing-imports . || true
-
-      - name: Run Test
-        run:
-          make test

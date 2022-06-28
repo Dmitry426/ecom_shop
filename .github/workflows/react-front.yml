@@ -5,20 +5,20 @@ on:
     branches:
       - main
     paths:
-      - front/react/**
+      - Front/react/**
 
   pull_request:
 
     branches:
       - main
     paths:
-      - front/react/**
+      - Front/react/**
 
   workflow_dispatch:
 
 env:
-  SRC_PATH: front/react
-  DEPLOY_PATH: front/react
+  SRC_PATH: Front/react
+  DEPLOY_PATH: Front/react
 
 jobs:
   build:
