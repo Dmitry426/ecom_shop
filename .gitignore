@@ -140,5 +140,6 @@ dmypy.json
 /fast_api/.idea/inspectionProfiles/Project_Default.xml
 /fast_api/pyproject.toml
 /fast_api/.idea/vcs.xml
-/services/flask_auth/.env
-/services/flask_auth/.env
+/Services/flask_auth/.env
+/Services/flask_auth/.env
+/Services/flask_auth/.env

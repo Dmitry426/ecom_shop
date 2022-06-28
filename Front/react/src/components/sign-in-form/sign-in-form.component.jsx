@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { loginAuthUserWithNameAndPassword } from "../../utils/auth.utils";
 import FormInput from "../form-input/form-input.component";
-import Button from "../folder/button.component";
+import Button from "../button/button.component";
 import "./sing-in-form.styles.scss";
 
 const defaultFormFields = {

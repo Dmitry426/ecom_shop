@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createAuthUserWithEmailAndPassword } from "../../utils/auth.utils";
 import FormInput from "../form-input/form-input.component";
 import "./sing-up-form.styles.scss";
-import Button from "../folder/button.component";
+import Button from "../button/button.component";
 
 const defaultFormFields = {
   login: "",
