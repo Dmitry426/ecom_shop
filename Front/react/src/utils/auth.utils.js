@@ -25,12 +25,12 @@ export const createAuthUserWithEmailAndPassword = async (
   }
 };
 
-export const loginAuthUserWithNameAndPassword = async (login, password) => {
+export const loginAuthUserWithNameAndPassword = async (email, password) => {
   if (!name || !password) return;
   try {
     let response = await axios.post(
       API_URL + "login",
-      JSON.stringify({ login, password }),
+      JSON.stringify({ email, password }),
       {
         headers: { "Content-Type": "application/json" },
       }
