@@ -3,7 +3,7 @@ version: "3.8"
 services:
   app:
     build:
-      context: ..
+      context: .
       target: development
       dockerfile: ../../Dockerfiles/Flask_auth/Dockerfile
     ports:
@@ -40,9 +40,9 @@ services:
 
   tests:
     build:
-      context: ..
+      context: ../../../services/flask_auth
       target: development
-      dockerfile: ../../Dockerfiles/Flask_auth/Dockerfile
+      dockerfile: ../../../Dockerfiles/Flask_auth/Dockerfile
     command: [ "pytest", "-v" ]
     environment:
       REDIS_HOST: redis

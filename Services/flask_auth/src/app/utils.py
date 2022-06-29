@@ -14,11 +14,11 @@ from flask_jwt_extended import (
     verify_jwt_in_request,
 )
 
-from app.core.config import JWTSettings
-from app.core.redis import redis
-from app.core.tracing import tracer
-from app.models.db_models import User
-from app.serializers.auth import TokenBody
+from .core.config import JWTSettings
+from .core.redis import redis
+from .core.tracing import tracer
+from .models.db_models import User
+from .serializers.auth import TokenBody
 
 from .core.enums import DefaultRole
 

@@ -1,5 +1,5 @@
 from abc import abstractmethod, ABCMeta
-from typing import  Optional, Tuple
+from typing import Dict, Optional, Tuple
 
 from authlib.integrations.requests_client import OAuth2Session
 from flask import Response, redirect, url_for
