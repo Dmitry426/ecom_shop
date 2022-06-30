@@ -5,13 +5,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import {UserProvider} from "./context/user.context";
+import {AuthProvider} from "./context/user.context";
 
 ReactDOM.render(
   <BrowserRouter>
-      <UserProvider>
+      <AuthProvider>
               <App />
-      </UserProvider>
+      </AuthProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );
