@@ -26,7 +26,7 @@ export const createAuthUserWithEmailAndPassword = async (
 };
 
 export const loginAuthUserWithNameAndPassword = async (email, password) => {
-  if (!name || !password) return;
+  if (!email|| !password) return;
   try {
     let response = await axios.post(
       API_URL + "login",
@@ -35,7 +35,9 @@ export const loginAuthUserWithNameAndPassword = async (email, password) => {
         headers: { "Content-Type": "application/json" },
       }
     );
-    return response?.data?.accessToken;
+    localStorage.setItem('access_token', response.data.access_token );
+    localStorage.setItem('refresh_token', response.data.refresh_token );
+    return true
   } catch (err) {
     if (err.response?.status === 400) {
       alert("Missing username or password");
