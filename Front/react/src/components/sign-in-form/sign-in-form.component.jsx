@@ -1,9 +1,8 @@
-import { useState , useContext } from "react";
+import { useState } from "react";
 import { loginAuthUserWithNameAndPassword } from "../../utils/auth.utils";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import "./sing-in-form.styles.scss";
-import {UserContext} from "../../context/user.context";
 
 const defaultFormFields = {
   email: "",
@@ -11,7 +10,6 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
-    const {setAuth} = useContext(UserContext)
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
@@ -25,8 +23,7 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await loginAuthUserWithNameAndPassword(email, password);
-      setAuth(email ,password , response. )
+       await loginAuthUserWithNameAndPassword(email, password);
     } finally {
       resetFormFields();
     }
@@ -57,9 +54,9 @@ const SignInForm = () => {
           }}
         />
         <div className="buttons-container">
-          <Button type="submit"> Sing In</Button>
+          <Button buttonType="inverted" type="submit"> Sing In </Button>
           <Button buttonType="google" type="button">
-            Google sign in{" "}
+            Google sign in
           </Button>
         </div>
       </form>

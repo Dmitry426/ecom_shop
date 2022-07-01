@@ -80,7 +80,6 @@ const SignUpForm = () => {
           }}
         />
         <Button buttonType="inverted" type="submit">
-          {" "}
           Sing Up
         </Button>
       </form>
