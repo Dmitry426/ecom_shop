@@ -88,7 +88,7 @@ def login(body: LoginBody):
     return get_new_tokens(user, request.user_agent.string)
 
 
-@auth.route("/history", methods=["GET"])
+@auth.route("/history", methods=["POST"])
 @validate(response_many=True)
 @jwt_required()
 def auth_history():

@@ -1,6 +1,6 @@
-import os
+from pathlib import Path
 
-log_path = os.path.join("/", "src/logs/auth_api.json")
+log_dir = Path.home() / 'logs'
 
 LOGGING = {
     'version': 1,
@@ -11,7 +11,7 @@ LOGGING = {
             'level': 'INFO',
             'formatter': 'json',
             'class': 'logging.FileHandler',
-            'filename': log_path,
+            'filename': log_dir / 'auth_api.json',
         },
         'console': {'level': 'DEBUG', 'class': 'logging.StreamHandler', },
     },
