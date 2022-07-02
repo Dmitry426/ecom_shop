@@ -22,7 +22,7 @@ services:
     volumes:
       - ./src/app:/home/app/src/app
       - ./src/migrations:/home/app/src/migrations
-      - "auth_api_logs:/home/app//src/logs"
+      - "auth_api_logs:/home/app/src/logs"
     depends_on:
       redis:
         condition: service_healthy
@@ -72,11 +72,12 @@ services:
       - "14269:14269"
 
   nginx:
-    image: nginx
-    ports:
-      - "80:80"
+    image: nginx:1.23.0-alpine
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - ../../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../../nginx/configs:/etc/nginx/conf.d:ro
+    ports:
+      - "5010:5010"  # auth_api
     depends_on:
       - app
 
@@ -86,4 +87,5 @@ volumes:
   postgres-data:
     driver: "local"
   auth_api_logs:
+  nginx_logs:
 
