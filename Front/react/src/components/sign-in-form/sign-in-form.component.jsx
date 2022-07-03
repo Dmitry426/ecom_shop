@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { loginAuthUserWithNameAndPassword } from "../../utils/auth.utils";
+import {getUserInfo, loginAuthUserWithNameAndPassword} from "../../utils/auth.utils";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import "./sing-in-form.styles.scss";
@@ -24,6 +24,7 @@ const SignInForm = () => {
     event.preventDefault();
     try {
        await loginAuthUserWithNameAndPassword(email, password);
+       await getUserInfo()
     } finally {
       resetFormFields();
     }
@@ -54,7 +55,7 @@ const SignInForm = () => {
           }}
         />
         <div className="buttons-container">
-          <Button buttonType="inverted" type="submit"> Sing In </Button>
+          <Button  type="submit"> Sing In </Button>
           <Button buttonType="google" type="button">
             Google sign in
           </Button>
