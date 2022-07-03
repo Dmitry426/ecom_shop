@@ -72,10 +72,10 @@ services:
       - "14269:14269"
 
   nginx:
-    image: nginx:1.23.0-alpine
+    build: ../../nginx
+    restart: always
     volumes:
-      - ../../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ../../nginx/configs:/etc/nginx/conf.d:ro
+      - nginx_logs:/var/log/nginx
     ports:
       - "5010:5010"  # auth_api
     depends_on:
