@@ -1,13 +1,13 @@
 import {createContext, useState } from "react";
 
 export const AuthContext = createContext({
-    refreshToken: null,
-    setAuth: () => null
+    user: null,
+    setUser: () => null
 })
 
 export const AuthProvider = ({children}) => {
-        const [refreshToken, setAuth] = useState(null)
-        const value = [refreshToken, setAuth]
+        const [user, setUser] = useState(null)
+        const value = [user, setUser]
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
