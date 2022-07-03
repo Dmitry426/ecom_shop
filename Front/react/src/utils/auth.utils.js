@@ -20,7 +20,7 @@ instance.interceptors.request.use(
     (config) => {
         const token = getLocalAccessToken();
         if (token) {
-         config.headers.Autorization  = `Bearer ${token}`;
+         config.headers.Authorization  = `Bearer ${token}`;
         }
         return config;
     },
@@ -124,7 +124,7 @@ export const getUserInfo = async () => {
         );
        return response.data
     } catch (err) {
-        alert("Sorry account is not responding ")
+        alert("No such  account  ")
     }
 };
 
