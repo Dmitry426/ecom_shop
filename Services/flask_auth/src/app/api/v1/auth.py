@@ -105,6 +105,15 @@ def auth_history():
     ]
 
 
+@auth.route("/user", methods=["GET"])
+@validate()
+@jwt_required()
+def get_user():
+    user_uuid = get_current_user().id
+    user = User.query.filter_by(id=user_uuid).one_or_none()
+    return UserBody(id=user.id, login=user.login, email=user.email)
+
+
 @auth.route("/refresh", methods=["POST"])
 @validate()
 def refresh(body: RefreshBody):
